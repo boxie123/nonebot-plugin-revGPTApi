@@ -6,9 +6,9 @@
 
 <div align="center">
 
-# nonebot-plugin-example
+# nonebot-plugin-revGPTApi
 
-_✨ NoneBot 插件简单描述 ✨_
+_✨ 通过GPTApi在QQ上与ChatGPT对话，支持GPT4 ✨_
 
 
 <a href="./LICENSE">
@@ -21,17 +21,9 @@ _✨ NoneBot 插件简单描述 ✨_
 
 </div>
 
-这是一个 nonebot2 插件项目的模板库, 你可以直接使用本模板创建你的 nonebot2 插件项目的仓库
-
-模板库使用方法:
-1. 点击仓库中的 "Use this template" 按钮, 输入仓库名与描述, 点击 "  Create repository from template" 创建仓库
-2. 在创建好的新仓库中, 在 "Add file" 菜单中选择 "Create new file", 在新文件名处输入`LICENSE`, 此时在右侧会出现一个 "Choose a license template" 按钮, 点击此按钮选择开源协议模板, 然后在最下方提交新文件到主分支
-3. 全局替换`owner`为仓库所有者ID; 全局替换`nonebot-plugin-example`为插件名; 全局替换`nonebot_plugin_example`为包名; 修改 python 徽标中的版本为你插件的运行所需版本
-4. 修改 README 中的插件名和插件描述, 并在下方填充相应的内容
-
 ## 📖 介绍
 
-这里是插件的详细介绍部分
+找了一圈没找到能用api、能简单设置反代、而且支持GPT-4的插件，只好自己写一个
 
 ## 💿 安装
 
@@ -39,7 +31,7 @@ _✨ NoneBot 插件简单描述 ✨_
 <summary>使用 nb-cli 安装</summary>
 在 nonebot2 项目的根目录下打开命令行, 输入以下指令即可安装
 
-    nb plugin install nonebot-plugin-example
+    nb plugin install nonebot-plugin-revgptapi
 
 </details>
 
@@ -50,27 +42,27 @@ _✨ NoneBot 插件简单描述 ✨_
 <details>
 <summary>pip</summary>
 
-    pip install nonebot-plugin-example
+    pip install nonebot-plugin-revgptapi
 </details>
 <details>
 <summary>pdm</summary>
 
-    pdm add nonebot-plugin-example
+    pdm add nonebot-plugin-revgptapi
 </details>
 <details>
 <summary>poetry</summary>
 
-    poetry add nonebot-plugin-example
+    poetry add nonebot-plugin-revgptapi
 </details>
 <details>
 <summary>conda</summary>
 
-    conda install nonebot-plugin-example
+    conda install nonebot-plugin-revgptapi
 </details>
 
 打开 nonebot2 项目根目录下的 `pyproject.toml` 文件, 在 `[tool.nonebot]` 部分追加写入
 
-    plugins = ["nonebot_plugin_example"]
+    plugins = ["nonebot_plugin_revgptapi"]
 
 </details>
 
@@ -80,14 +72,21 @@ _✨ NoneBot 插件简单描述 ✨_
 
 | 配置项 | 必填 | 默认值 | 说明 |
 |:-----:|:----:|:----:|:----:|
-| 配置项1 | 是 | 无 | 配置说明 |
-| 配置项2 | 否 | 无 | 配置说明 |
+| API_KEY | 是 | 无 | api key |
+| API_URL | 否 | https://api.chatanywhere.com.cn/v1/chat/completions | 默认使用[GPT_API_free](https://github.com/chatanywhere/GPT_API_free)仓库的反代链接 |
+| MODEL | 否 | gpt-4 | 使用的模型 |
+| PRESET | 否 | PromptGenerator.txt | 预设模板文件名 |
+
+其余配置请自行查看`config.py`
 
 ## 🎉 使用
 ### 指令表
 | 指令 | 权限 | 需要@ | 范围 | 说明 |
 |:-----:|:----:|:----:|:----:|:----:|
-| 指令1 | 主人 | 否 | 私聊 | 指令说明 |
-| 指令2 | 群员 | 是 | 群聊 | 指令说明 |
-### 效果图
-如果有效果图的话
+| chat | 无 | 是 | 私聊和群聊 | 聊天 |
+| preset | 无 | 是 | 私聊和群聊 | 启用预设模板并聊天 |
+
+## 鸣谢
+- [GPT_API_free](https://github.com/chatanywhere/GPT_API_free): 提供稳定的反代链接和廉价api额度
+- [SDGPT](https://github.com/thx114/SDGPT): 提供插件实现思路
+- [revChatGPT](https://github.com/acheong08/ChatGPT): 提供功能实现工具
